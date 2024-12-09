@@ -1,0 +1,7 @@
+pipeline:
+  name: "LLM: PDF knowledge bot demo"
+  tasks:
+  - name: "LLM: PDF knowledge bot app"
+    type: "bash script"
+    port: 8787
+    bash_script_path: "pdfbot/run_qa.sh"
