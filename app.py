@@ -14,8 +14,8 @@ st.set_page_config(
     initial_sidebar_state='auto',
 )
 
-if "pdf_qa_model" not in st.session_state:
-    st.session_state["pdf_qa_model"]:PdfQA = PdfQA() ## Intialisation
+if "pdfbot" not in st.session_state:
+    st.session_state["pdfbot"]:PdfQA = PdfQA() ## Intialisation
 
 ## To cache resource across multiple session 
 @st.cache_resource
@@ -60,25 +60,25 @@ with st.sidebar:
             with NamedTemporaryFile(delete=False, suffix='.pdf') as tmp:
                 shutil.copyfileobj(pdf_file, tmp)
                 tmp_path = Path(tmp.name)
-                st.session_state["pdf_qa_model"].config = {
+                st.session_state["pdfbot"].config = {
                     "pdf_path": str(tmp_path),
                     "embedding": emb,
                     "llm": llm,
                     "load_in_8bit": load_in_8bit
                 }
-                st.session_state["pdf_qa_model"].embedding = load_emb(emb)
-                st.session_state["pdf_qa_model"].llm = load_llm(llm,load_in_8bit)        
-                st.session_state["pdf_qa_model"].init_embeddings()
-                st.session_state["pdf_qa_model"].init_models()
-                st.session_state["pdf_qa_model"].vector_db_pdf()
+                st.session_state["pdfbot"].embedding = load_emb(emb)
+                st.session_state["pdfbot"].llm = load_llm(llm,load_in_8bit)        
+                st.session_state["pdfbot"].init_embeddings()
+                st.session_state["pdfbot"].init_models()
+                st.session_state["pdfbot"].vector_db_pdf()
                 st.sidebar.success("PDF uploaded successfully")
 
 question = st.text_input('Ask a question', 'What is this document?')
 
 if st.button("Answer"):
     try:
-        st.session_state["pdf_qa_model"].retreival_qa_chain()
-        answer = st.session_state["pdf_qa_model"].answer_query(question)
+        st.session_state["pdfbot"].retreival_qa_chain()
+        answer = st.session_state["pdfbot"].answer_query(question)
         st.write(f"{answer}")
     except Exception as e:
         st.error(f"Error answering the question: {str(e)}")
