@@ -1,5 +1,5 @@
 import streamlit as st
-from pdf_qa import PdfQA
+from pdfbot import PdfQA
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 import time
