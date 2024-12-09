@@ -8,12 +8,11 @@ from constants import * ## constants.py file can be found in code
 
 # Streamlit app code
 st.set_page_config(
-    page_title='Q&A Bot for PDF',
+    page_title='pdf bot',
     page_icon='🔖',
     layout='wide',
     initial_sidebar_state='auto',
 )
-
 
 if "pdf_qa_model" not in st.session_state:
     st.session_state["pdf_qa_model"]:PdfQA = PdfQA() ## Intialisation
