@@ -4,7 +4,7 @@ from pathlib import Path
 from tempfile import NamedTemporaryFile
 import time
 import shutil
-from constants import * ## constants.py file can be found in code
+from constants import * 
 
 # Streamlit app code
 st.set_page_config(
@@ -15,7 +15,7 @@ st.set_page_config(
 )
 
 if "pdfbot" not in st.session_state:
-    st.session_state["pdfbot"]:PdfQA = PdfQA() ## Intialisation
+    st.session_state["pdfbot"]:PdfQA = PdfQA() ## Initialisation
 
 ## To cache resource across multiple session 
 @st.cache_resource
