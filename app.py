@@ -23,6 +23,8 @@ def load_llm(llm,load_in_8bit):
 
     if llm == LLM_OPENAI_GPT35:
         pass
+    elif llm == LLM_META_LLAMA_3B:
+        return PdfQA.createmodel(load_in_8bit)
     elif llm == LLM_FLAN_T5_SMALL:
         return PdfQA.create_flan_t5_small(load_in_8bit)
     elif llm == LLM_FLAN_T5_BASE:
